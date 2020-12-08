@@ -25,18 +25,18 @@ class CoffeesController < ApplicationController
         erb :'coffees/show'
     end 
 
-    # get '/coffees/:id/edit' do
-    #     #get the form to edit one coffee
-    #     @coffee = Coffee.find_by_id(params[:id])
-    #     erb :'coffees/edit'
-    # end 
+    get '/coffees/:id/edit' do
+        #get the form to edit one coffee
+        @coffee = Coffee.find_by_id(params[:id])
+        erb :'coffees/edit'
+    end 
 
-    # patch '/coffees/:id' do 
-    #     #update/modify the existing coffee in the database
-    #     coffee = Coffee.find_by_id(params[:id])
-    #     coffee.update(params)
-    #     redirect to :'coffees/index'
-    # end 
+    patch '/coffees/:id' do 
+        #update/modify the existing coffee in the database
+        coffee = Coffee.find_by_id(params[:id])
+        coffee.update(params[:coffee])
+        redirect to "/coffees/#{coffee.id}"
+    end 
 
     # delete '/coffees/:id' do
     #     #delete a single coffee 
