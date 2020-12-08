@@ -1,7 +1,8 @@
 class CoffeesController < ApplicationController
 
-    get '/coffees' do
+    get '/coffees/index' do
         #get all the coffees
+        @coffees = Coffee.all
         erb :'/coffees/index'
     end 
 
@@ -12,7 +13,9 @@ class CoffeesController < ApplicationController
 
     post '/coffees' do 
         #submit the form and create a coffee and redirect
-        @coffees = Coffee.all
+        binding.pry
+        coffee = Coffee.create(params[:coffee])
+        
         redirect to :'coffees/index'
     end 
 
@@ -20,7 +23,7 @@ class CoffeesController < ApplicationController
     #     #show one coffee
     #     ##NEED TO CODE IN AN IF/ELSE FOR IF FOUND DO X, ELSE DO Y - IF ID ISN'T FOUND IT WILL RETURN 'NIL'
     #     @coffee = Coffee.find_by(id: params[:id])
-    #     erb :'movies/show'
+    #     erb :'coffees/show'
     # end 
 
     # get '/coffees/:id/edit' do
@@ -31,16 +34,16 @@ class CoffeesController < ApplicationController
 
     # patch '/coffees/:id' do 
     #     #update/modify the existing coffee in the database
-    #     movie = Movie.find_by_id(params[:id])
-    #     movie.update(params)
-    #     redirect to :'movies/index'
+    #     coffee = Coffee.find_by_id(params[:id])
+    #     coffee.update(params)
+    #     redirect to :'coffees/index'
     # end 
 
-    delete '/coffees/:id' do
-        #delete a single coffee 
-        movie = Movie.find_by_id(params[:id])
-        movie.destroy
-        redirect to :'moveis/index'
-    end 
+    # delete '/coffees/:id' do
+    #     #delete a single coffee 
+    #     coffee = Coffee.find_by_id(params[:id])
+    #     coffee.destroy
+    #     redirect to :'coffees/index'
+    # end 
 
 end 

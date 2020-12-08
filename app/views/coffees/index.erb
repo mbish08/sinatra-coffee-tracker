@@ -1,1 +1,8 @@
-nothing to see here 
+<% @coffees.each do |c| %>
+    <p><%= c.brand %>
+    <%= c.flavor %>
+    <%= c.brand %>
+    <%= c.roast %>
+    <%= c.rating %></p>
+    <br>
+    <% end %>
