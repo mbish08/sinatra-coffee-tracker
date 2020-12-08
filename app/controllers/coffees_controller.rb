@@ -13,18 +13,17 @@ class CoffeesController < ApplicationController
 
     post '/coffees' do 
         #submit the form and create a coffee and redirect
-       # binding.pry
         coffee = Coffee.create(params[:coffee])
         
-        redirect to :coffees
+        redirect to "/coffees/#{coffee.id}"
     end 
 
-    # get '/coffees/:id' do
-    #     #show one coffee
-    #     ##NEED TO CODE IN AN IF/ELSE FOR IF FOUND DO X, ELSE DO Y - IF ID ISN'T FOUND IT WILL RETURN 'NIL'
-    #     @coffee = Coffee.find_by(id: params[:id])
-    #     erb :'coffees/show'
-    # end 
+    get '/coffees/:id' do
+        #show one coffee
+        ##NEED TO CODE IN AN IF/ELSE FOR IF FOUND DO X, ELSE DO Y - IF ID ISN'T FOUND IT WILL RETURN 'NIL'
+        @coffee = Coffee.find_by(id: params[:id])
+        erb :'coffees/show'
+    end 
 
     # get '/coffees/:id/edit' do
     #     #get the form to edit one coffee

@@ -1,7 +1,7 @@
-<% @coffees.each do |c| %>
-    <%= c.brand %>
+<ul><% @coffees.each do |c| %>
+    <li><%= c.brand %>
     <%= c.flavor %>
     <%= c.roast %>
-    <%= c.rating %>
+    <%= c.rating %></li>
     <br>
-    <% end %>
+    <% end %></ul>
