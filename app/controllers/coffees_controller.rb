@@ -1,6 +1,6 @@
 class CoffeesController < ApplicationController
 
-    get '/coffees/index' do
+    get '/coffees' do
         #get all the coffees
         @coffees = Coffee.all
         erb :'/coffees/index'
@@ -13,10 +13,10 @@ class CoffeesController < ApplicationController
 
     post '/coffees' do 
         #submit the form and create a coffee and redirect
-        binding.pry
+       # binding.pry
         coffee = Coffee.create(params[:coffee])
         
-        redirect to :'coffees/index'
+        redirect to :coffees
     end 
 
     # get '/coffees/:id' do
