@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_06_013213) do
+ActiveRecord::Schema.define(version: 2020_12_09_011919) do
 
   create_table "coffees", force: :cascade do |t|
     t.string "brand"
@@ -18,10 +18,13 @@ ActiveRecord::Schema.define(version: 2020_12_06_013213) do
     t.string "roast"
     t.float "rating"
     t.integer "user_id"
+    t.index ["user_id"], name: "index_coffees_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "username"
+    t.string "email"
+    t.string "password_digest"
   end
 
 end
