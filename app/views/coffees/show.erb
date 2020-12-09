@@ -3,3 +3,7 @@ Flavor: <%= @coffee.flavor %><br>
 Roast: <%= @coffee.roast %><br>
 Rating: <%= @coffee.rating %>
 </p>
+<form method="POST" action="/coffees/<%= @coffee.id %>">
+    <input type="hidden" name="_method" value ="DELETE">
+    <input type="submit" value="Delete Coffee">
+</form>

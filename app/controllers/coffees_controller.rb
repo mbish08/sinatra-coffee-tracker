@@ -38,11 +38,11 @@ class CoffeesController < ApplicationController
         redirect to "/coffees/#{coffee.id}"
     end 
 
-    # delete '/coffees/:id' do
-    #     #delete a single coffee 
-    #     coffee = Coffee.find_by_id(params[:id])
-    #     coffee.destroy
-    #     redirect to :'coffees/index'
-    # end 
+    delete '/coffees/:id' do
+        #delete a single coffee 
+        coffee = Coffee.find_by_id(params[:id])
+        coffee.destroy
+        redirect to :'coffees'
+    end 
 
 end 
