@@ -13,7 +13,7 @@
 
   /* --- Welcome Page Styles --- */
   body {
-    background-color: lightblue;
+    background-color: brown;
     color: #333;
     font-family: Sans-Serif;
     line-height: 18px;
@@ -99,7 +99,7 @@
   .sidebar {
     background: transparent;
     border: none;
-    border-top: 2px solid #ccc;
+    border-top: 2px solid rgb(53, 21, 21);
     padding: 0;
   }
 
