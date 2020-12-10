@@ -1,4 +1,9 @@
 <h2>Please sign up for a free account in order to track your coffee flavor ratings!</h2>
+<% if @errors %>
+    <% @errors.each do |e| %>
+        <%= e %>
+    <% end %>
+<% end %>
 <form method="POST" action="/signup">
     Username: <input type="text" name="user[username]"><br>
     Email: <input type="email" name="user[email]"><br>

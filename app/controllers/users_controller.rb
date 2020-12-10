@@ -7,8 +7,13 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do 
-       user = User.create(params[:user])
-       redirect to "/users/#{user.id}"
+       user = User.new(params[:user])
+       if user.save
+            redirect to "/users/#{user.id}"
+       else
+            @errors = user.errors.full_messages
+            erb :'users/signup' 
+       end 
     end 
 
     get '/signin' do
