@@ -10,4 +10,13 @@ class ApplicationController < Sinatra::Base
     register Sinatra::Flash
   end
 
+  helpers do 
+
+    def logged_in?
+      !!session[:user_id]
+    end
+
+  end 
+
+
 end
