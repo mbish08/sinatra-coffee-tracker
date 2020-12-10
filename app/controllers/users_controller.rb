@@ -16,11 +16,12 @@ class UsersController < ApplicationController
     end
 
     post '/signin' do
-        user = User.find_by_username(params[:user][:username])
+        !params[:user][:username].blank? ? user = User.find_by_username(params[:user][:username]) : user = User.find_by_email(params[:user][:email])
         if user && user.authenticate(params[:user][:password])
             session[:user_id] = user.id
             redirect to "/users/#{user.id}"
         else
+            flash[:message] = "These login credentials not match.  Please try again."
             redirect to '/signin'
         end
     end 

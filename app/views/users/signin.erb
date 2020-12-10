@@ -1,3 +1,6 @@
+<% if flash[:message] %>
+    <%= flash[:message] %>
+<% end %>
 <form method="POST" action="/signin">
     Username: <input type="text" name="user[username]"> or Email:  <input type="text" name="user[email]">
     <br>
