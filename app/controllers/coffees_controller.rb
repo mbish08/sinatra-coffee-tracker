@@ -13,9 +13,16 @@ class CoffeesController < ApplicationController
 
     post '/coffees' do 
         #submit the form and create a coffee and redirect
-        coffee = Coffee.create(params[:coffee])
+        
+        coffee = Coffee.new(params[:coffee])
+        coffee[:user_id] = session[:user_id]
+        coffee.save
         
         redirect to "/coffees/#{coffee.id}"
+    end 
+
+    get '/coffees/home'
+
     end 
 
     get '/coffees/:id' do
