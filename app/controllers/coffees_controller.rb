@@ -13,7 +13,6 @@ class CoffeesController < ApplicationController
 
     post '/coffees' do 
         #submit the form and create a coffee and redirect
-        
         coffee = Coffee.new(params[:coffee])
         coffee[:user_id] = session[:user_id]
         binding.pry
@@ -22,11 +21,11 @@ class CoffeesController < ApplicationController
         redirect to "/coffees/#{coffee.id}"
     end 
 
-    get '/coffees/home' do
-        @user = User.find_by_id(session[:user_id])
-        @coffees = @user.coffees
-        erb :'coffees/home'
-    end 
+    # get '/coffees/home' do
+    #     @user = User.find_by_id(session[:user_id])
+    #     @coffees = @user.coffees
+    #     erb :'coffees/home'
+    # end 
 
     get '/coffees/:id' do
         #show one coffee

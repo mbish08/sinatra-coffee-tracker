@@ -1,1 +1,7 @@
 <h2>Hello, <%= @user.username %>!</h2>
+
+Here are your coffees:
+<ul><% @coffees.each do |c| %>
+    <li><a href="/coffees/<%= c.id %>"><%= c.brand.capitalize %>: <%= c.flavor.capitalize %>, <%= c.roast.capitalize %> roast, Rating <%= c.rating %></a></li>
+    <br>
+<% end %></ul>

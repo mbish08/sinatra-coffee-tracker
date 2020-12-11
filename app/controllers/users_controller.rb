@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
     post '/signup' do 
        user = User.new(params[:user])
+       binding.pry
        if user.save
             redirect to "/users/#{user.id}"
        else
@@ -33,7 +34,9 @@ class UsersController < ApplicationController
 
     get '/users/:id' do 
         @user = User.find_by_id(params[:id])
-        if @user = current_user
+        @current_user = session[:user_id]
+        # binding.pry
+        if @user.id == @current_user
             @coffees = @user.coffees
             erb :'users/show'
         else

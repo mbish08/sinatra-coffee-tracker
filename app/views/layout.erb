@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+
       <% if logged_in? %>
+      # FIX THIS  <a href="/users/#{user.id}">My Coffee</a>
+        <br>
         <a href="/logout">Log out</a>
       <% end %>
       <h1>My Coffee Tracker</h1>
@@ -16,4 +19,8 @@
         <%= yield %>
 
   </body>
+
+  
 </html>
+
+
