@@ -1,10 +1,11 @@
-<p> Brand: <%= @coffee.brand %><br>
-Flavor: <%= @coffee.flavor %><br>
-Roast: <%= @coffee.roast %><br>
+<p> Brand: <%= @coffee.brand.capitalize %><br>
+Flavor: <%= @coffee.flavor.capitalize %><br>
+Roast: <%= @coffee.roast.capitalize %><br>
 Rating: <%= @coffee.rating %>
 </p>
 <form method="POST" action="/coffees/<%= @coffee.id %>">
     <input type="hidden" name="_method" value ="DELETE">
-    # <a href="/coffees/#{coffee.id}">Edit</a>
+     <a href="/coffees/<%= @coffee.id %>/edit">Edit</a>
+     <br>
     <input type="submit" value="Delete Coffee">
 </form>

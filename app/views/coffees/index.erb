@@ -1,7 +1,5 @@
 <h2>Index</h2><br>
 <ul><% @coffees.each do |c| %>
-    <li><%= c.brand %>
-    <%= c.flavor %>
-    <%= c.roast %>
+    <li><a href="/coffees/<%= c.id %>"><%= c.brand.capitalize %>: <%= c.flavor.capitalize %>, <%= c.roast.capitalize %> roast</a></li>
     <br>
     <% end %></ul>
