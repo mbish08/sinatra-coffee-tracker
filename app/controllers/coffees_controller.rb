@@ -25,11 +25,6 @@ class CoffeesController < ApplicationController
     get '/coffees/home' do
         @user = User.find_by_id(session[:user_id])
         @coffees = @user.coffees
-        # @users = User.all
-        
-        # @coffees.user_id.map do | k, v |
-        #     binding.pry
-        # end 
         erb :'coffees/home'
     end 
 

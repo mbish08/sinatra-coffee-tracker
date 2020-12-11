@@ -33,7 +33,12 @@ class UsersController < ApplicationController
 
     get '/users/:id' do 
         @user = User.find_by_id(params[:id])
-        erb :'users/show'
+        if @user = current_user
+            @coffees = @user.coffees
+            erb :'users/show'
+        else
+            redirect to '/'
+        end 
     end 
 
     get '/logout' do
