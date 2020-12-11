@@ -1,0 +1,5 @@
+<h2>Here are your coffee ratings, </h2><br>
+<ul><% @coffees.map do |c| %>
+    <li><a href="/coffees/<%= c.id %>"><%= c.brand.capitalize %>: <%= c.flavor.capitalize %>, <%= c.roast.capitalize %> roast</a></li>
+    <br>
+    <% end %></ul>

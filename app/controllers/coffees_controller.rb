@@ -21,8 +21,11 @@ class CoffeesController < ApplicationController
         redirect to "/coffees/#{coffee.id}"
     end 
 
-    get '/coffees/home'
-
+    get '/coffees/home' do
+        @coffees = Coffee.all
+        @users = User.all
+        binding.pry
+        erb :'coffees/home'
     end 
 
     get '/coffees/:id' do
