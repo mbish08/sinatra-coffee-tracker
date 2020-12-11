@@ -24,7 +24,10 @@ class CoffeesController < ApplicationController
     get '/coffees/home' do
         @coffees = Coffee.all
         @users = User.all
-        binding.pry
+        @user = User.find_by_id(session[:user_id]).username
+        @coffees.user_id.map do | k, v |
+
+        end 
         erb :'coffees/home'
     end 
 

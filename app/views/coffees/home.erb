@@ -1,5 +1,15 @@
-<h2>Here are your coffee ratings, </h2><br>
+<h2>Here are your coffee ratings, <%= @user %></h2><br>
+
+<ul><% @coffees.user_id.each do | k, v| 
+    <% v == session[:id] %>
+    <%= k.brand %>
+    <% end %></ul>
+
+
+
+
+<p>Ignore below here for now</p>
 <ul><% @coffees.map do |c| %>
     <li><a href="/coffees/<%= c.id %>"><%= c.brand.capitalize %>: <%= c.flavor.capitalize %>, <%= c.roast.capitalize %> roast</a></li>
     <br>
-    <% end %></ul>
+<% end %></ul>
