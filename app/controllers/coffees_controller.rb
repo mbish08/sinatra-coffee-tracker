@@ -16,18 +16,20 @@ class CoffeesController < ApplicationController
         
         coffee = Coffee.new(params[:coffee])
         coffee[:user_id] = session[:user_id]
+        binding.pry
         coffee.save
         
         redirect to "/coffees/#{coffee.id}"
     end 
 
     get '/coffees/home' do
-        @coffees = Coffee.all
-        @users = User.all
-        @user = User.find_by_id(session[:user_id]).username
-        @coffees.user_id.map do | k, v |
-
-        end 
+        @user = User.find_by_id(session[:user_id])
+        @coffees = @user.coffees
+        # @users = User.all
+        
+        # @coffees.user_id.map do | k, v |
+        #     binding.pry
+        # end 
         erb :'coffees/home'
     end 
 
