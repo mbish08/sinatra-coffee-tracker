@@ -7,37 +7,40 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do 
-       user = User.new(params[:user])
-    #    binding.pry
-       if user.save
+        user = User.new(params[:user])
+        # binding.pry
+        if user 
+            user.save
             session[:user_id] = user.id
+            user.save
             redirect to "/users/#{user.id}"
-       else
+        else 
             @errors = user.errors.full_messages
-            erb :'users/signup' 
-       end 
+            erb :'users/signup'
+        end 
     end 
 
     get '/signin' do
         erb :'users/signin'
     end
 
-    post '/signin' do
+    post '/signin' do 
         !params[:user][:username].blank? ? user = User.find_by_username(params[:user][:username]) : user = User.find_by_email(params[:user][:email])
         if user && user.authenticate(params[:user][:password])
             session[:user_id] = user.id
             redirect to "/users/#{user.id}"
-        else
-            flash[:message] = "These login credentials not match.  Please try again."
+        else 
+            flash[:message] = "Login unsuccessful. Please try again."
             redirect to '/signin'
         end
     end 
 
     get '/users/:id' do 
+    #    binding.pry
         @user = User.find_by_id(params[:id])
-        @current_user = session[:user_id]
+        current_user = session[:user_id]
         @coffees = @user.coffees
-        if @user.id == @current_user
+        if @user.id == current_user
             erb :'users/show'
         else
             redirect to '/'
