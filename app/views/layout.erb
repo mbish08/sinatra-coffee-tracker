@@ -12,6 +12,12 @@
       <% if logged_in? %>
         <a href="/logout">Log out</a>
       <% end %>
+      <br>
+      <% if logged_in? %>
+        <a href="/users/@user.id">My home page</a>
+      <% end %>
+      <br>
+      <a href="/coffees/new">Create a new coffee</a>
       <h1>My Coffee Tracker</h1>
       
         <%= yield %>
