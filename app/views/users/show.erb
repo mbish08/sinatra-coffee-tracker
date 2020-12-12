@@ -1,7 +1,14 @@
 <h2>Hello, <%= @user.username %>!</h2>
 
+<% if @coffees == [] %>
+    You don't have any coffees yet.
+<% else %>
 Here are your coffees:
 <ul><% @coffees.each do |c| %>
     <li><a href="/coffees/<%= c.id %>"><%= c.brand.capitalize %>: <%= c.flavor.capitalize %>, <%= c.roast.capitalize %> roast, Rating <%= c.rating %></a></li>
     <br>
+<% end %>
 <% end %></ul>
+
+<br>
+<br>

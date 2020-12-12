@@ -10,6 +10,7 @@ class UsersController < ApplicationController
        user = User.new(params[:user])
        binding.pry
        if user.save
+            session[:user_id] = user.id
             redirect to "/users/#{user.id}"
        else
             @errors = user.errors.full_messages
@@ -35,9 +36,7 @@ class UsersController < ApplicationController
     get '/users/:id' do 
         @user = User.find_by_id(params[:id])
         @current_user = session[:user_id]
-        # binding.pry
         if @user.id == @current_user
-            @coffees = @user.coffees
             erb :'users/show'
         else
             redirect to '/'
