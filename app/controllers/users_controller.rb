@@ -37,7 +37,6 @@ class UsersController < ApplicationController
         @user = User.find_by_id(params[:id])
         @current_user = session[:user_id]
         @coffees = @user.coffees
-         binding.pry
         if @user.id == @current_user
             erb :'users/show'
         else
