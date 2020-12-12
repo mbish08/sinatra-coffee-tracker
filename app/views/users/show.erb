@@ -2,10 +2,13 @@
 
 <a href="/coffees/new">Create a new coffee</a>
 <br>
+<br>
 <% if @coffees == [] %>
-    You don't have any coffees yet.
+    You don't have any coffees yet.  Create your first coffee by clicking above.
 <% else %>
 Here are your coffees:
+<br>
+<br>
 <ul><% @coffees.each do |c| %>
     <li><a href="/coffees/<%= c.id %>"><%= c.brand.capitalize %>: <%= c.flavor.capitalize %>, <%= c.roast.capitalize %> roast, Rating <%= c.rating %></a></li>
     <br>
