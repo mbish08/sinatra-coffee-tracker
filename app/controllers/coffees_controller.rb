@@ -2,15 +2,24 @@ class CoffeesController < ApplicationController
 
     get '/coffees' do
         #get all the coffees
-        @coffees = Coffee.all
-        erb :'/coffees/index'
+        if !logged_in?
+            redirect to '/'
+        else
+            @coffees = Coffee.all
+            erb :'/coffees/index'
+        end
     end 
 
     get '/coffees/new' do
         #get the form to create a new coffee
-        @user = User.find_by_id(session[:user_id])
-      #  binding.pry
-        erb :'/coffees/new'
+        # binding.pry
+        if !logged_in?
+            redirect to '/'
+        else
+            @user = User.find_by_id(session[:user_id])
+        #  binding.pry
+            erb :'/coffees/new'
+        end
     end 
 
     post '/coffees' do 
@@ -33,8 +42,15 @@ class CoffeesController < ApplicationController
     get '/coffees/:id' do
         #show one coffee
         ##NEED TO CODE IN AN IF/ELSE FOR IF FOUND DO X, ELSE DO Y - IF ID ISN'T FOUND IT WILL RETURN 'NIL'
+        # binding.pry
         @coffee = Coffee.find_by(id: params[:id])
+        user = User.find_by_id(session[:user_id])
+        # binding.pry
+        if @coffee == nil
+            redirect to "/users/#{user.id}"
+        else
         erb :'coffees/show'
+        end 
     end 
 
     get '/coffees/:id/edit' do

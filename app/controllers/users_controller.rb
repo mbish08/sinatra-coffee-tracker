@@ -9,8 +9,8 @@ class UsersController < ApplicationController
     post '/signup' do 
         user = User.new(params[:user])
         # binding.pry
-        if user 
-            user.save
+        if user.save
+            # user.save
             session[:user_id] = user.id
             user.save
             redirect to "/users/#{user.id}"
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
 
     get '/logout' do
         session.clear
-        redirect to '/signin'
+        redirect to '/'
     end 
      
 end 
