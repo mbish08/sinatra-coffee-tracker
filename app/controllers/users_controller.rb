@@ -37,14 +37,21 @@ class UsersController < ApplicationController
 
     get '/users/:id' do 
     #    binding.pry
-        @user = User.find_by_id(params[:id])
-        current_user = session[:user_id]
-        @coffees = @user.coffees
-        if @user.id == current_user
-            erb :'users/show'
-        else
+        @user = current_user
+        if !logged_in?
             redirect to '/'
-        end 
+        else
+            @coffees = @user.coffees
+            erb :'users/show'
+        end
+        # @user = User.find_by_id(params[:id])
+        # #current_user = session[:user_id]
+        # @coffees = @user.coffees
+        # if @user.id == current_user
+        #     erb :'users/show'
+        # else
+        #     redirect to '/'
+        # end 
     end 
 
     get '/logout' do

@@ -49,7 +49,7 @@ class CoffeesController < ApplicationController
         if @coffee == nil
             redirect to "/users/#{user.id}"
         else
-        erb :'coffees/show'
+            erb :'coffees/show'
         end 
     end 
 
