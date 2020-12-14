@@ -1,7 +1,7 @@
 <form method="POST" action="/coffees/<%= @coffee.id %>">
     <input type="hidden" name="_method" value="PATCH">
     <br>
-    <h2>Make your changes to <%= @coffee.brand.capitalize %>: <%= @coffee.flavor.capitalize %> and then click save.</h2>
+    <h2>Make your changes to <%= @coffee.brand %>: <%= @coffee.flavor %> and then click save.</h2>
     <br>
     <label>Coffee brand: </label>
     <input type="text" name="coffee[brand]" value="<%= @coffee.brand %>">
@@ -12,8 +12,8 @@
     <label>Roast type: </label>
     <input type="text" name="coffee[roast]" value="<%= @coffee.roast %>">
     <br>
-    <label>Rating (1.0-5.0): </label>
-    <input type="number" pattern="[1.0-5.0]{3}" name="coffee[rating]" value="<%= @coffee.rating %>">
+    <label>Rating: </label>
+    <input type="float" name="coffee[rating]" value="<%= @coffee.rating %>">
     <br>
     <br>
     <input type="submit" value="Update coffee information">
