@@ -1,4 +1,4 @@
-<h2>Here are coffees from other users, if you are looking for ideas on what to try next!</h2><br>
+<h2>Here are coffees from all users, if you are looking for ideas on what to try next!</h2><br>
 <ul><% @coffees.each do |c| %>
     <li><%= c.brand.capitalize %>: <%= c.flavor.capitalize %>, <%= c.roast.capitalize %> roast, User rating: <%= c.rating %></li>
     <br>

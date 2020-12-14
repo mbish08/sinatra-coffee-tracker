@@ -27,8 +27,8 @@ class CoffeesController < ApplicationController
         coffee = Coffee.new(params[:coffee])
         coffee[:user_id] = session[:user_id]
         user = User.find_by_id(session[:user_id])
-        binding.pry
-        if Coffee.exists?(params[:coffee][:flavor])
+  #     binding.pry
+        if user.coffees.find_by_flavor(coffee[:flavor])
             flash[:alert] = "The coffee you just entered already exists.  If you would like to edit your coffee, please select it from the list above."
             redirect to "/users/#{user.id}"
         else
