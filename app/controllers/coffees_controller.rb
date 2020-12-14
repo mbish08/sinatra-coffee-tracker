@@ -17,7 +17,7 @@ class CoffeesController < ApplicationController
             redirect to '/'
         else
             @user = User.find_by_id(session[:user_id])
-        #  binding.pry
+     #     binding.pry
             erb :'/coffees/new'
         end
     end 
@@ -27,10 +27,14 @@ class CoffeesController < ApplicationController
         coffee = Coffee.new(params[:coffee])
         coffee[:user_id] = session[:user_id]
         user = User.find_by_id(session[:user_id])
-        # binding.pry
-        coffee.save
-        
-        redirect to "/users/#{user.id}"
+        if Coffee.exists?(params[:coffee][:flavor])
+            flash[:alert] = "The coffee you just entered already exists.  If you would like to edit your coffee, please select it from the list above."
+            redirect to "/users/#{user.id}"
+        else
+        #  binding.pry
+            coffee.save
+            redirect to "/users/#{user.id}"
+        end 
     end 
 
     # get '/coffees/home' do
@@ -68,9 +72,10 @@ class CoffeesController < ApplicationController
 
     delete '/coffees/:id' do
         #delete a single coffee 
+        user = User.find_by_id(session[:user_id])
         coffee = Coffee.find_by_id(params[:id])
         coffee.destroy
-        redirect to :'coffees'
+        redirect to :"/users/#{user.id}"
     end 
 
 end 

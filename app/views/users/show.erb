@@ -13,6 +13,10 @@ Here are your coffees:
     <li><a href="/coffees/<%= c.id %>"><%= c.brand.capitalize %>: <%= c.flavor.capitalize %>, <%= c.roast.capitalize %> roast, Rating <%= c.rating %></a></li>
 <% end %>
 <% end %></ul>
-
 <br>
 <br>
+<% flash.keys.each do |type| %>
+    <div data-alert class="flash <%= type %> alert-box radius">
+      <%= flash[type] %>
+    </div>
+<% end %>
