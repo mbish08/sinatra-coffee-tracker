@@ -12,12 +12,10 @@ class CoffeesController < ApplicationController
 
     get '/coffees/new' do
         #get the form to create a new coffee
-        # binding.pry
         if !logged_in?
             redirect to '/'
         else
             @user = User.find_by_id(session[:user_id])
-     #     binding.pry
             erb :'/coffees/new'
         end
     end 
@@ -27,27 +25,17 @@ class CoffeesController < ApplicationController
         coffee = Coffee.new(params[:coffee])
         coffee[:user_id] = session[:user_id]
         user = User.find_by_id(session[:user_id])
-  #     binding.pry
         if user.coffees.find_by_flavor(coffee[:flavor])
             flash[:alert] = "The coffee you just entered already exists.  If you would like to edit your coffee, please select it from the list above."
             redirect to "/users/#{user.id}"
         else
-        #  binding.pry
             coffee.save
             redirect to "/users/#{user.id}"
         end 
     end 
 
-    # get '/coffees/home' do
-    #     @user = User.find_by_id(session[:user_id])
-    #     @coffees = @user.coffees
-    #     erb :'coffees/home'
-    # end 
-
     get '/coffees/:id' do
         #show one coffee
-        ##NEED TO CODE IN AN IF/ELSE FOR IF FOUND DO X, ELSE DO Y - IF ID ISN'T FOUND IT WILL RETURN 'NIL'
-        # binding.pry
         @coffee = Coffee.find_by(id: params[:id])
         user = User.find_by_id(session[:user_id])
         # binding.pry

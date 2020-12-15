@@ -8,9 +8,7 @@ class UsersController < ApplicationController
 
     post '/signup' do 
         user = User.new(params[:user])
-        # binding.pry
         if user.save
-            # user.save
             session[:user_id] = user.id
             user.save
             redirect to "/users/#{user.id}"
@@ -36,7 +34,6 @@ class UsersController < ApplicationController
     end 
 
     get '/users/:id' do 
-    #    binding.pry
         @user = current_user
         if !logged_in?
             redirect to '/'
@@ -44,14 +41,6 @@ class UsersController < ApplicationController
             @coffees = @user.coffees
             erb :'users/show'
         end
-        # @user = User.find_by_id(params[:id])
-        # #current_user = session[:user_id]
-        # @coffees = @user.coffees
-        # if @user.id == current_user
-        #     erb :'users/show'
-        # else
-        #     redirect to '/'
-        # end 
     end 
 
     get '/logout' do
