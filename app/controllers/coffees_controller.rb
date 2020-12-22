@@ -15,7 +15,6 @@ class CoffeesController < ApplicationController
         if !logged_in?
             redirect to '/'
         else
-            # @user = User.find_by_id(session[:user_id])
             erb :'/coffees/new'
         end
     end 
@@ -35,10 +34,9 @@ class CoffeesController < ApplicationController
     get '/coffees/:id' do
         #show one coffee
         @coffee = Coffee.find_by(id: params[:id])
-        user = User.find_by_id(session[:user_id])
-        # binding.pry
         if @coffee == nil
-            redirect to "/users/#{user.id}"
+            flash[:alert] = "The coffee you selected does not exist.  Please choose from your list of coffees or create a new one."
+            redirect to "/users/#{current_user.id}"
         else
             erb :'coffees/show'
         end 
