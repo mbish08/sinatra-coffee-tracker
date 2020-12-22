@@ -15,22 +15,20 @@ class CoffeesController < ApplicationController
         if !logged_in?
             redirect to '/'
         else
-            @user = User.find_by_id(session[:user_id])
+            # @user = User.find_by_id(session[:user_id])
             erb :'/coffees/new'
         end
     end 
 
     post '/coffees' do 
         #submit the form and create a coffee and redirect
-        coffee = Coffee.new(params[:coffee])
-        coffee[:user_id] = session[:user_id]
-        user = User.find_by_id(session[:user_id])
-        if user.coffees.find_by_flavor(coffee[:flavor])
+        coffee = current_user.coffees.build(params[:coffee])
+        if current_user.coffees.find_by_flavor(coffee[:flavor])
             flash[:alert] = "The coffee you just entered already exists.  If you would like to edit your coffee, please select it from the list above."
-            redirect to "/users/#{user.id}"
+            redirect to "/users/#{current_user.id}"
         else
             coffee.save
-            redirect to "/users/#{user.id}"
+            redirect to "/users/#{current_user.id}"
         end 
     end 
 
