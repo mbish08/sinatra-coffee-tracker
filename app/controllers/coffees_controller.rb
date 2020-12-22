@@ -33,8 +33,7 @@ class CoffeesController < ApplicationController
 
     get '/coffees/:id' do
         #show one coffee
-        @coffee = Coffee.find_by(id: params[:id])
-        if @coffee == nil
+        if current_coffee == nil
             flash[:alert] = "The coffee you selected does not exist.  Please choose from your list of coffees or create a new one."
             redirect to "/users/#{current_user.id}"
         else
@@ -44,19 +43,18 @@ class CoffeesController < ApplicationController
 
     get '/coffees/:id/edit' do
         #get the form to edit one coffee
-        @coffee = Coffee.find_by_id(params[:id])
         erb :'coffees/edit'
     end 
 
     patch '/coffees/:id' do 
         #update/modify the existing coffee in the database
-        coffee = Coffee.find_by_id(params[:id])
-        coffee.update(params[:coffee])
-        redirect to "/coffees/#{coffee.id}"
+        current_coffee.update(params[:coffee])
+        redirect to "/coffees/#{current_coffee.id}"
     end 
 
     delete '/coffees/:id' do
         #delete a single coffee 
+        binding.pry
         user = User.find_by_id(session[:user_id])
         coffee = Coffee.find_by_id(params[:id])
         coffee.destroy
