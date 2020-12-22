@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     end
 
     post '/signin' do 
-        !params[:user][:username].blank? ? user = User.find_by_username(params[:user][:username]) : user = User.find_by_email(params[:user][:email])
+        user = User.find_by_username(params[:user][:username]) || user = User.find_by_email(params[:user][:email])
         if user && user.authenticate(params[:user][:password])
             session[:user_id] = user.id
             redirect to "/users/#{user.id}"
@@ -32,11 +32,8 @@ class UsersController < ApplicationController
     end 
 
     get '/users/:id' do 
-        if !logged_in?
-            redirect_if_not_logged_in
-        else
-            check_for_current_user_else_redirect
-        end
+        redirect_if_not_logged_in
+        check_for_current_user_else_redirect
     end 
 
     get '/logout' do
