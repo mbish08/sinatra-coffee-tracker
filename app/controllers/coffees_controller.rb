@@ -54,11 +54,9 @@ class CoffeesController < ApplicationController
 
     delete '/coffees/:id' do
         #delete a single coffee 
-        binding.pry
-        user = User.find_by_id(session[:user_id])
-        coffee = Coffee.find_by_id(params[:id])
-        coffee.destroy
-        redirect to :"/users/#{user.id}"
+        current_coffee.destroy
+        flash[:alert] = "Your coffee has been removed from your list"
+        redirect to :"/users/#{current_user.id}"
     end 
 
 end
