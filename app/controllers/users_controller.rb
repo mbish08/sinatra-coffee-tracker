@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 
-
     get '/signup' do
         #get form to sign up
         erb :'users/signup'
@@ -33,9 +32,9 @@ class UsersController < ApplicationController
     end 
 
     get '/users/:id' do 
+        # binding.pry
         if !logged_in?
-            flash[:message] = "You are not authorized to view this page.  Please login to continue."
-            redirect to '/'
+            redirect_if_not_logged_in
         else
             current_user.coffees
             erb :'users/show'
