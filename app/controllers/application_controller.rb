@@ -39,6 +39,16 @@ class ApplicationController < Sinatra::Base
       redirect to '/signin' if !logged_in?
     end
 
+    def check_for_current_user_else_redirect
+      if current_user.id != params[:id].to_i
+        flash[:message] = "This page does not belong to you.  Please logout and login as another user to view this page."
+        redirect to "/users/#{current_user.id}"
+      else 
+        current_user.coffees
+        erb :'users/show'
+      end 
+    end 
+
   end 
 
 end

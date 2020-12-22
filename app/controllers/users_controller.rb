@@ -32,12 +32,10 @@ class UsersController < ApplicationController
     end 
 
     get '/users/:id' do 
-        # binding.pry
         if !logged_in?
             redirect_if_not_logged_in
         else
-            current_user.coffees
-            erb :'users/show'
+            check_for_current_user_else_redirect
         end
     end 
 
