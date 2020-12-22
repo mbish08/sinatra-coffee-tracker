@@ -10,7 +10,6 @@ class UsersController < ApplicationController
         user = User.new(params[:user])
         if user.save
             session[:user_id] = user.id
-            user.save
             redirect to "/users/#{user.id}"
         else 
             @errors = user.errors.full_messages
@@ -34,11 +33,11 @@ class UsersController < ApplicationController
     end 
 
     get '/users/:id' do 
-        @user = current_user
         if !logged_in?
+            flash[:message] = "You are not authorized to view this page.  Please login to continue."
             redirect to '/'
         else
-            @coffees = @user.coffees
+            current_user.coffees
             erb :'users/show'
         end
     end 
