@@ -33,8 +33,8 @@ class CoffeesController < ApplicationController
 
     get '/coffees/:id' do
         #show one coffee
-        if current_coffee == nil
-            flash[:alert] = "The coffee you selected does not exist.  Please choose from your list of coffees or create a new one."
+        if current_coffee == nil || current_coffee.user_id != current_user.id
+            flash[:alert] = "The coffee you selected does not exist or does not belong to you.  Please choose from your list of coffees or create a new one."
             redirect to "/users/#{current_user.id}"
         else
             erb :'coffees/show'
